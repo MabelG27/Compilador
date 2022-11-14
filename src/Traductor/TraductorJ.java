@@ -2,9 +2,9 @@ package Traductor;
 
 import java.io.*;
 
-public class JTranslator {
+public class TraductorJ {
 
-    public JTranslator() {
+    public TraductorJ() {
 
     }
 

@@ -59,8 +59,8 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
 	try {
 	    FileInputStream fs = new FileInputStream(infile);  //Permite entrar en la entrada del archivo.
 	    BufferedReader br = new BufferedReader(new InputStreamReader(fs)); //Nos pewrmite leer las lineas
-	    JTranslator jtrans = new JTranslator(); // Declara que se usará un método en otra clase
-	    CTranslator ctrans = new CTranslator();
+	    TraductorJ jtrans = new TraductorJ(); // Declara que se usará un método en otra clase
+	    TraductorC ctrans = new TraductorC();
 
 	    if (infileext.equals("java")) {
 		//System.out.println("Adding header to .cpp file");                       // debugging code

@@ -2,9 +2,9 @@ package Traductor;
 
 import java.io.*;
 
-public class CTranslator {
+public class TraductorC {
 
-    public CTranslator() {
+    public TraductorC() {
 
     }//CTranslator constructor
 

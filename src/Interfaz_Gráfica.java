@@ -1,8 +1,5 @@
 
-import Traductor.CTranslator;
-import Traductor.JTranslator;
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import compilerTools.CodeBlock;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.Timer;
@@ -89,7 +86,8 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         identificadores = new HashMap<>();
 
         //Entra un autocompletador  en el editor de código ctrl + espacio
-        Functions.setAutocompleterJTextComponent(new String[]{"using namespace std;", "int main(){}", "for(int i = 0; i<10;i++){  }"}, txtCode, () -> {
+        Functions.setAutocompleterJTextComponent(new String[]{"using namespace std;", "int main(){}",
+            "for(int i = 0; i<10;i++){  }", "#Include <iostream>", "#Include <conio.h>", "#Include <stdio.h>"}, txtCode, () -> {
             timerKeyReleased.restart();
         });
     }
@@ -122,8 +120,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
 
-        btnNuevo.setBackground(new java.awt.Color(255, 255, 153));
+        btnNuevo.setBackground(new java.awt.Color(255, 204, 102));
         btnNuevo.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(0, 102, 102));
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,8 +130,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             }
         });
 
-        btnAbrir.setBackground(new java.awt.Color(255, 255, 153));
+        btnAbrir.setBackground(new java.awt.Color(255, 204, 102));
         btnAbrir.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnAbrir.setForeground(new java.awt.Color(0, 102, 102));
         btnAbrir.setText("Abrir");
         btnAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,8 +140,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             }
         });
 
-        btnGuardar.setBackground(new java.awt.Color(255, 255, 153));
+        btnGuardar.setBackground(new java.awt.Color(255, 204, 102));
         btnGuardar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(0, 102, 102));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,8 +150,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             }
         });
 
-        btnGuardarC.setBackground(new java.awt.Color(255, 255, 153));
+        btnGuardarC.setBackground(new java.awt.Color(255, 204, 102));
         btnGuardarC.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnGuardarC.setForeground(new java.awt.Color(0, 102, 102));
         btnGuardarC.setText("Guardar como");
         btnGuardarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,8 +160,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             }
         });
 
-        btnCompilar.setBackground(new java.awt.Color(255, 255, 153));
+        btnCompilar.setBackground(new java.awt.Color(255, 204, 102));
         btnCompilar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnCompilar.setForeground(new java.awt.Color(0, 102, 102));
         btnCompilar.setText("Analizadores");
         btnCompilar.setActionCommand("Analizador");
         btnCompilar.addActionListener(new java.awt.event.ActionListener() {
@@ -195,10 +198,12 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         jtaOutputConsole.setRows(5);
         jScrollPane2.setViewportView(jtaOutputConsole);
 
+        txtCode.setBackground(new java.awt.Color(204, 255, 255));
         jScrollPane1.setViewportView(txtCode);
 
-        BtnLimpiar.setBackground(new java.awt.Color(255, 255, 153));
+        BtnLimpiar.setBackground(new java.awt.Color(255, 204, 102));
         BtnLimpiar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        BtnLimpiar.setForeground(new java.awt.Color(0, 102, 102));
         BtnLimpiar.setText("Limpiar");
         BtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,8 +220,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Errores Detectados");
 
-        BtnTraducir.setBackground(new java.awt.Color(255, 255, 153));
+        BtnTraducir.setBackground(new java.awt.Color(255, 204, 102));
         BtnTraducir.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        BtnTraducir.setForeground(new java.awt.Color(0, 102, 102));
         BtnTraducir.setText("Traducir a  Java");
         BtnTraducir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,8 +233,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         txtJava.setEditable(false);
         jScrollPane4.setViewportView(txtJava);
 
-        BtnSalir.setBackground(new java.awt.Color(255, 255, 153));
+        BtnSalir.setBackground(new java.awt.Color(255, 204, 102));
         BtnSalir.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        BtnSalir.setForeground(new java.awt.Color(0, 102, 102));
         BtnSalir.setText("Salir");
         BtnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,37 +265,27 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                         .addComponent(btnCompilar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnTraducir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                         .addComponent(BtnLimpiar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnSalir)
-                        .addContainerGap())
+                        .addComponent(BtnSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(132, 132, 132)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(167, 167, 167)
-                                .addComponent(jLabel4)))
+                                .addComponent(jScrollPane1))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(132, 132, 132)
-                                        .addComponent(jLabel2)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap())))))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(0, 292, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,8 +300,8 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                     .addComponent(BtnTraducir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -312,13 +309,13 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -374,158 +371,6 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
 
     private void BtnTraducirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTraducirActionPerformed
 
-//        Scanner scan = new Scanner(System.in);  // ddeclarando Scanner
-//        System.out.print("Ingresar programa a traducir: ");
-        String infile = txtCode.getText();  // toma lo ingrsado por el usuario y lo guarda en la variable infile
-
-        String[] name = infile.split("\\.");  // divide el archivo en dos partes en el"."
-
-        String infilename = name[0];   // la primera parte de la división del archivo
-        String infileext = name[1];   // la segunda  parte de la división del archivo
-
-        String outfilename;  // declarando variable  outfilename
-
-        /*Declaración if else que verifica si la segunda parte de la división 
-            es java o si es cpp y agrega al final en consecuencia
-         */
-        if (infileext.equals("java")) {
-            outfilename = infilename + ".cpp";
-        } else if (infileext.equals("cpp")) {
-            outfilename = infilename + ".java";
-        } else {
-            System.out.println("No se puede traducir este lenguaje");
-            return;
-        }//if-else
- //Crea un nuevo archivo llamado outfile al que se le da el nombre del archivo
-	File outfile = new File(outfilename);   
-
-  /*
-Si hay un archivo que tiene el mismo nombre y no un directorio, esto
-elimine el archivo para permitir que se escriba uno nuevo sobre él.
-  */
-	if (outfile.exists() && !outfile.isDirectory()) {
-	    outfile.delete();
-	}
-
-  /*
-  Declarando variables
-  */
-
-	String line = "";
-	String prevLine = "";
-	String tempLine = "";
-	String temp = "";
-
-
-	try {
-	    FileInputStream fs = new FileInputStream(infile);  //Permite entrar en la entrada del archivo.
-	    BufferedReader br = new BufferedReader(new InputStreamReader(fs)); //Nos pewrmite leer las lineas
-	    JTranslator jtrans = new JTranslator(); // Declara que se usará un método en otra clase
-	    CTranslator ctrans = new CTranslator();
-
-	    if (infileext.equals("java")) {
-		//System.out.println("Adding header to .cpp file");                       // debugging code
-		jtrans.addCPPHeader(outfile);
-		//System.out.println("Header added to .cpp file");                        // debugging code
-
-		line = br.readLine(); // inicia el programa para comenzar a leer líneas de código y lo declara en línea
-		/*
-		  Hasta que el código llegue al inicio del método principal, este leerá el código
-		*/
-		do {
-		    line = br.readLine();
-		    line = line.replaceAll("\\s","");
-		} while (!line.equals("publicstaticvoidmain(String[]args){"));
-
-		line = br.readLine();
-
-
-		do {
-		    prevLine = line; // establece preLine igual a la línea antes de que la línea lea la siguiente línea de código
-		    line = br.readLine(); // lee la siguiente línea de código
-		    System.out.println(line);
-        if(prevLine.equals("}")){
-          System.out.println("HELLO?");
-        }
-        if(line == null){
-          System.out.println("ARCHIVO CREADO");
-          
-        }
-		   
-         // if prevLine termina con un } y la última línea en nulo, salga de esta operación
-        if (prevLine.equals("}") && line == null) {                        
-            prevLine="";
-            break;
-		    }
-
-		    //Entrando en la sección que causa problemas
-		    String[] tempStArr = prevLine.split("\\(");// divide la prevLine
-
-
-		    tempLine = tempStArr[0];  // primera parte almacenada como tempLine
-	
-		    tempLine = tempLine.replaceAll("\\s",""); // código para eliminar espacios en blanco del código
-	
-		    if (tempLine.equals("System.out.println") || tempLine.equals("System.out.print")) {
-
-			jtrans.JstringTrans(prevLine, outfile);
-		    } else {
-
-			jtrans.JTranslate(prevLine, outfile);
-		    }
-
-
-		} while (line != null); // siempre que haya código para leer, se ejecutará la instrucción do anterior.
-
-	    } else {   // no presente todavía.
-		System.out.println("Traduciendo cpp -> java");
-		ctrans.addJavaHeader(infilename, outfile);
-
-		line = br.readLine();  // inicia el programa para comenzar a leer líneas de código y lo declara en línea
-		/*
-		  Hasta que el código llegue al inicio del método principal, este leerá el código		*/
-		do {
-		    line = br.readLine();
-		    line = line.replaceAll("\\s","");
-		} while (!line.equals("intmain(){"));
-
-		line = br.readLine();
-
-
-		do {
-		    prevLine = line;// establece preLine igual a la línea antes de que la línea lea la siguiente línea de código
-		    line = br.readLine(); // lee la siguiente línea de código
-		    System.out.println(line);
-                    
-                   // si prevLine termina con } y la última línea es nula, sal de esta operación
-		    if (prevLine.equals("}") && line == null) { 
-			break;
-		    }
-
-		    String[] tempStArr = prevLine.split("\\<<");
-		    tempLine = tempStArr[0];
-		    tempLine = tempLine.replaceAll("\\s","");
-
-		    if (tempLine.equals("cout")) {
-
-			ctrans.CstringTrans(prevLine, outfile);
-		    } else {
-			
-			ctrans.CTranslate(prevLine, outfile);
-		    }//if-else
-
-		} while (line != null);// siempre que haya código para leer, se ejecutará la instrucción do anterior.
-	    }//if-else
-
-	    ctrans.CTranslate("}",outfile);
-
-	    /*
-	      catches exception of a file inputed by user is not found.
-	    */
-	} catch (Exception FileNotFoundException) {
-	    System.out.println("Este archivo no existe !");
-	    return;
-	}
 
     }//GEN-LAST:event_BtnTraducirActionPerformed
 
@@ -555,7 +400,6 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
             output.write(bytesText);
             BufferedReader entrada = new BufferedReader(new InputStreamReader(new FileInputStream(codigo), "UTF8"));
             lexer = new Lexer(entrada);
-
             while (true) {
                 Token token = lexer.yylex();
                 if (token == null) {
@@ -568,7 +412,6 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
         } catch (IOException ex) {
             System.out.println("Error al escribir en el archivo... " + ex.getMessage());
         }
-
     }
 
     //Análisis Sintáctico
@@ -581,97 +424,109 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
         /*Agrupando valores*/
         gramatica.group("VALOR", "(NUMERO|CADENA|NUM_DEC)", true);
         gramatica.group("CLASE_PRINCIPAL", "TIPO_DATO CLASS_PRINC PARENTESIS_A PARENTESIS_C LLAVE_A", true);
-        gramatica.group("NAMESPACE", "PAL_RES_USING ESP_NOM PAL_RES_STD", true);
+        gramatica.group("NAMESPACE", "PAL_RES_USING ESP_NOM PAL_RES_STD PUNTO_COMA", true);
         gramatica.group("FUNCIONES", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C", true);
-
 
         /*Declaración de variables numeros enteros*/
         gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true, identProd);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL VARIABLE OPE_ASIG VALOR", true, 1,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL VARIABLE OPE_ASIG VALOR PUNTO_COMA", true, 1,
                 "Error sintáctico {}, falta el tipo de dato de la variable[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO OPE_ASIG VALOR", true, 2,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO OPE_ASIG VALOR PUNTO_COMA", true, 2,
                 "Error sintáctico {}, falta definir variable[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE VALOR", true, 3,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE VALOR PUNTO_COMA", true, 3,
                 "Error sintáctico {}, falta operador de asignacion[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG", true, 4,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG PUNTO_COMA", true, 4,
                 "Error sintáctico {}, fvalor de asignacion incorrecto [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO", true, 5,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO PUNTO_COMA", true, 5,
                 "Error sintáctico {}, no se ha definido ninguna variable[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL VARIABLE", true, 6,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL VARIABLE PUNTO_COMA", true, 6,
                 "Error sintáctico {}, [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL OPE_ASIG", true, 7,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL OPE_ASIG PUNTO_COMA", true, 7,
                 "Error sintáctico {}, [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL VALOR", true, 8,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL VALOR PUNTO_COMA", true, 8,
                 "Error sintáctico {}, [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true);
-        gramatica.group("VARIABLES", "TIPO_DATO VARIABLE OPE_ASIG VALOR", true, 9,
-                "Error sintáctico no se ha  definido clase principal {}, [#/%]");
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true, 9,
+                "Error sintáctico no se ha definido clase principal {}, [#/%]");
         gramatica.initialLineColumn();
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true, 9,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true, 10,
                 "Error semántico, falta punto y coma {}, [#/%]");
         gramatica.initialLineColumn();
 
         /*Librerías*/
         gramatica.group("LIBRERIA", "PAL_RES_INCL LIBRERIA_C", true, identProd);
-        gramatica.group("LIBRERIA", "LIBRERIA_C", true, 10,
+        gramatica.group("LIBRERIA", "LIBRERIA_C", true, 11,
                 "Error sintáctico {}[#/%]");
 
         gramatica.group("LIBRERIA", "PAL_RES_INCL LIBRERIA_C", true);
-        gramatica.group("LIBRERIA", "PAL_RES_INCL", true, 11,
+        gramatica.group("LIBRERIA", "PAL_RES_INCL", true, 12,
                 "Error sintáctico {}[#/%]");
         gramatica.initialLineColumn();
 
         /*Agrupación de funciones*/
         gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, identProd);
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C", true, 12,
+        gramatica.group("FUNCION", "TIPO_DATO VARIABLE TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C", true, 13,
                 "Error sintáctico, falta  parentesis de apertura[#/%]");
 
         gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE LLAVE_A LLAVE_C", true, 13,
+        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE LLAVE_A LLAVE_C", true, 14,
                 "Error sintáctico, falta  parentesis de cierre[#/%]");
 
         gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_C", true, 14,
+        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_C", true, 15,
                 "Error sintáctico, falta  llave de apertura de cierre[#/%]");
 
         gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A", true, 15,
+        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A", true, 16,
                 "Error sintáctico, falta  llave de cierre de cierre[#/%]");
 
         gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", " VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, 16,
+        gramatica.group("FUNCION", " VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, 17,
                 "Error sintáctico, falta  tipo de dato de la función[#/%]");
 
         gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", " TIPO_DATO VARIABLE PARENTESIS_A  VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, 17,
+        gramatica.group("FUNCION", " TIPO_DATO VARIABLE PARENTESIS_A  VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, 18,
                 "Error sintáctico, falta  tipo de dato de párametro[#/%]");
 
         gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", " TIPO_DATO PARENTESIS_A  TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, 18,
+        gramatica.group("FUNCION", " TIPO_DATO PARENTESIS_A  TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, 19,
                 "Error sintáctico, falta definir la función[#/%]");
 
         gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", " TIPO_DATO VARIABLE PARENTESIS_A  TIPO_DATO PARENTESIS_C LLAVE_A LLAVE_C ", true, 19,
+        gramatica.group("FUNCION", " TIPO_DATO VARIABLE PARENTESIS_A  TIPO_DATO PARENTESIS_C LLAVE_A LLAVE_C ", true, 20,
                 "Error sintáctico, falta definir parametro[#/%]");
 
         gramatica.show();
+
+        //Using namesapce
+        gramatica.group("NAMESPACE", "PAL_RES_USING ESP_NOM PAL_RES_STD PUNTO_COMA", true, identProd);
+        gramatica.group("NAMESPACE", "PAL_RES_USING ESP_NOM PAL_RES_STD PUNTO_COMA", true, 21,
+                "Error sintáctico {}, [#/%]");
+
+        gramatica.group("NAMESPACE", "PAL_RES_USING ESP_NOM PAL_RES_STD PUNTO_COMA", true, identProd);
+        gramatica.group("NAMESPACE", "ESP_NOM PAL_RES_STD PUNTO_COMA", true, 22,
+                "Error sintáctico {}, [#/%]");
+
+        gramatica.group("NAMESPACE", "PAL_RES_USING ESP_NOM PAL_RES_STD PUNTO_COMA", true, identProd);
+        gramatica.group("NAMESPACE", "PAL_RES_USING ESP_NOM PAL_RES_STD", true, 23,
+                "Error sintáctico, falta punto y coma {}, [#/%]");
 
     }
 
@@ -696,23 +551,25 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
         idenDataType.put("char", "CADENA");
         idenDataType.put("String", "CADENA");
 
+        idenDataType.put(";", "PUNTO_COMA");
+
         for (Production id : identProd) {
 
             //Numeros Enteros
-            if (!idenDataType.get(id.lexemeRank(0)).equals(id.lexicalCompRank(-1))) {
+            if (!idenDataType.get(id.lexemeRank(0)).equals(id.lexicalCompRank(-2))) {
                 errors.add(new ErrorLSSL(1, "Error Semántico {}:  valor no compatible con el tipo de dato [#/%]", id, true));
 
-            } else if (id.lexicalCompRank(-1).equals("NUMERO") && !id.lexemeRank(-1).matches("0|[1-9][0-9]*")) {
+            } else if (id.lexicalCompRank(-1).equals("NUMERO") && !id.lexemeRank(-2).matches("0|[1-9][0-9]*")) {
                 errors.add(new ErrorLSSL(2, "Error Semántico {}: el valor asignado no es un entero [#/%]", id, false));
             } else {
-                identificadores.put(id.lexemeRank(1), id.lexemeRank(-1));
+                identificadores.put(id.lexemeRank(1), id.lexemeRank(-2));
             }
 
             //Numeros Decimales
-            if (!idenDataType.get(id.lexemeRank(0)).equals(id.lexicalCompRank(-1))) {
+            if (!idenDataType.get(id.lexemeRank(0)).equals(id.lexicalCompRank(-2))) {
                 errors.add(new ErrorLSSL(3, "Error Semántico {}:  valor no compatible con el tipo de dato [#/%]", id, true));
 
-            } else if (id.lexicalCompRank(-1).equals("NUM_DEC") && !id.lexemeRank(-1).matches("[1-9][0-9]*.[1-9][0-9]*")) {
+            } else if (id.lexicalCompRank(-2).equals("NUM_DEC") && !id.lexemeRank(-2).matches("[1-9][0-9]*.[1-9][0-9]*")) {
 
                 errors.add(new ErrorLSSL(4, "Error Semántico {}: el valor asignado no es compatible [#/%]", id, false));
 
@@ -721,10 +578,10 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
             }
 
             //Cadenas de Texto
-            if (!idenDataType.get(id.lexemeRank(0)).equals(id.lexicalCompRank(-1))) {
+            if (!idenDataType.get(id.lexemeRank(0)).equals(id.lexicalCompRank(-2))) {
                 errors.add(new ErrorLSSL(5, "Error Semántico {}:  valor no compatible con el tipo de dato [#/%]", id, true));
 
-            } else if (id.lexicalCompRank(-1).equals("CADENA") && !id.lexemeRank(-1).matches("\"[A-Za-zÑñ_ÁÉÍÓÚáéíóúÜü]+\"")) {
+            } else if (id.lexicalCompRank(-2).equals("CADENA") && !id.lexemeRank(-2).matches("\"[A-Za-zÑñ_ÁÉÍÓÚáéíóúÜü]+\"")) {
 
                 errors.add(new ErrorLSSL(6, "Error Semántico {}: el valor asignado no es una cadena de texto [#/%]", id, false));
 
@@ -732,18 +589,6 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
                 identificadores.put(id.lexemeRank(1), id.lexemeRank(-1));
             }
 
-            //PUNTO_COMA
-//            //Booleano
-//            if (!idenDataType.get(id.lexemeRank(0)).equals(id.lexicalCompRank(-1))) {
-//                errors.add(new ErrorLSSL(7, "Error Semántico {}:  valor no compatible con el tipo de dato [#/%]", id, true));
-//
-//            } else if (id.lexicalCompRank(-1).equals("DAT_BOL") && !id.lexemeRank(-1).matches("\true|\flase")) {
-//
-//                errors.add(new ErrorLSSL(8, "Error Semántico {}: el valor asignado no es booleano", id, false));
-//
-//            } else {
-//                identificadores.put(id.lexemeRank(1), id.lexemeRank(-1));
-//            }
         }//for
     }
 
