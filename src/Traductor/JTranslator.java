@@ -60,7 +60,7 @@ public class JTranslator {
 		endl = true;
 	    }
 
-	    writer.print("cout <<");// escribr cout << en el nuevoarchivo
+	    writer.print("cout <<");// escribr cout << en el nuevo archivo
 
 	    //se repite siempre que i sea menor que la longitud de printSt -2 y lee cada parte de la matriz de caracteres
 	    for (int i = 0; i < (printSt.length - 2); i++) {

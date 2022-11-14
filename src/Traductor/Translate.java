@@ -5,79 +5,71 @@ import java.io.*;
 import java.text.*;
 import java.lang.Object;
 import java.nio.file.*;
-import static jflex.option.Options.directory;
 
 public class Translate {
 
     public static void main(String[] args) {
-	Scanner scan = new Scanner(System.in);                           // declaring Scanner
-	System.out.print("Please enter in file for translating: ");
-	String infile = scan.next();                                    // takes user input and sets it to infile
+	Scanner scan = new Scanner(System.in);  // ddeclarando Scanner
+	System.out.print("Ingresar programa a traducir: ");
+	String infile = scan.next();  // toma lo ingrsado por el usuario y lo guarda en la variable infile
 
-	String[] name = infile.split("\\.");                             // splits infile into two parts at the "."
+	String[] name = infile.split("\\.");  // divide el archivo en dos partes en el"."
 
-	String infilename = name[0];                                     // the first part of the split
-	String infileext = name[1];                                      // the second part of the split
+	String infilename = name[0];   // la primera parte de la división del archivo
+	String infileext = name[1];   // la segunda  parte de la división del archivo
 
-        //System.out.println(infilename + "." + infileext);
 
-	String outfilename;                                              // declaring outfilename
+	String outfilename;  // declarando variable  outfilename
 
 /*
-if else statement that checks if the second part of the split is java
-or if it is cpp and adds at end accordingly
+Declaración if else que verifica si la segunda parte de la división 
+es java o si es cpp y agrega al final en consecuencia
 */
 	if (infileext.equals("java")) {
 	    outfilename = infilename + ".cpp";
 	} else if (infileext.equals("cpp")) {
 	    outfilename = infilename + ".java";
 	} else {
-	    System.out.println("Program not designed to translate other languages!");
+	    System.out.println("No se puede traducir este lenguaje");
 	    return;
 	}//if-else
 
 
-	File outfile = new File(outfilename);                            // allows us to create a new file called outfile htat is given the name of the file
+     //Crea un nuevo archivo llamado outfile al que se le da el nombre del archivo
+	File outfile = new File(outfilename);   
 
   /*
-  if there is a file that has the same name and not a directory, this will
-  delete the file to allow a new one to be written over it.
+Si hay un archivo que tiene el mismo nombre y no un directorio, esto
+elimine el archivo para permitir que se escriba uno nuevo sobre él.
   */
 	if (outfile.exists() && !outfile.isDirectory()) {
 	    outfile.delete();
 	}
 
   /*
-  Declaring variables
+  Declarando variables
   */
 
 	String line = "";
 	String prevLine = "";
 	String tempLine = "";
 	String temp = "";
-	/*try (Stream<String> lines = Files.lines(Paths.get(infile))) {
-	    line = lines.skip(1).findFirst.get();
-	    }*/
+
 
 	try {
-	    FileInputStream fs = new FileInputStream(infile);                    // Allows us to get into the file input
-	    BufferedReader br = new BufferedReader(new InputStreamReader(fs));   // allows us to read the lines
-	    JTranslator jtrans = new JTranslator();                               // Declares that we will be using a method in another class
+	    FileInputStream fs = new FileInputStream(infile);  //Permite entrar en la entrada del archivo.
+	    BufferedReader br = new BufferedReader(new InputStreamReader(fs)); //Nos pewrmite leer las lineas
+	    JTranslator jtrans = new JTranslator(); // Declara que se usará un método en otra clase
 	    CTranslator ctrans = new CTranslator();
-	    //for (int i = 0; i < 5; i++) {
-	    //while (br.readLine() != null) {
 
-      /*
-      if the end of the file name reads java add header to a new file with a cpp ending
-      */
 	    if (infileext.equals("java")) {
 		//System.out.println("Adding header to .cpp file");                       // debugging code
 		jtrans.addCPPHeader(outfile);
 		//System.out.println("Header added to .cpp file");                        // debugging code
 
-		line = br.readLine();                                                   // starts the program to start reading lines of code and declares it in line
+		line = br.readLine(); // inicia el programa para comenzar a leer líneas de código y lo declara en línea
 		/*
-		  Until the code reaches the start of the main method, this will read the code
+		  Hasta que el código llegue al inicio del método principal, este leerá el código
 		*/
 		do {
 		    line = br.readLine();
@@ -88,72 +80,51 @@ or if it is cpp and adds at end accordingly
 
 
 		do {
-		    prevLine = line;                                                    // sets preLine equal to line before line reads the next line of code
-		    line = br.readLine();                                               // reads the next line of code
-		    System.out.println(line);
+		    prevLine = line; // establece preLine igual a la línea antes de que la línea lea la siguiente línea de código
+		    line = br.readLine(); // lee la siguiente línea de código
+                    
+		    System.out.println(line);/***************/
+                    
         if(prevLine.equals("}")){
           System.out.println("HELLO?");
         }
         if(line == null){
-          System.out.println("CHECK");
+          System.out.println("ARCHIVO CREADO");
+          
         }
-		    if (prevLine.equals("}") && line == null) {                         // if prevLine ends with a } and the last line in null, break out of this operation
+		   
+         // if prevLine termina con un } y la última línea en nulo, salga de esta operación
+        if (prevLine.equals("}") && line == null) {                        
             prevLine="";
             break;
 		    }
 
-		    // Entering section that causes issues
-		    //System.out.println("Starting Split!");                              // debugging code (does not get this far)
-		    String[] tempStArr = prevLine.split("\\(");                           // splits the prevLine
-		    //System.out.println("Line has been split");
-		    //System.out.println("Length: " + tempStArr.length);
-
-		    tempLine = tempStArr[0];                                            // first part stored as tempLine
-		    /*
-		      int i = 1;
-		      while (i < tempStArr.length) {
-		      //System.out.println("Separating into two parts");
-		      System.out.println(tempStArr[i]);
-
-		      temp = tempStArr[i];                                                // second part stored as temp
-		      //System.out.println("Temp line: " + temp);
-		      i++;
-		      }//while */
-
-		    tempLine = tempLine.replaceAll("\\s","");                           // code to remove white space from code
-		    // Exiting section that causes issues
+		    //Entrando en la sección que causa problemas
+		    String[] tempStArr = prevLine.split("\\(");// divide la prevLine
 
 
-		    //System.out.println("Determining if print statement!");              // debugging code
-
-		    /*
-		      if tempLine says System.out.println or System.out.print, the code will call
-		      a method to translate print statements otherwise it will keep translating.
-		    */
+		    tempLine = tempStArr[0];  // primera parte almacenada como tempLine
+	
+		    tempLine = tempLine.replaceAll("\\s",""); // código para eliminar espacios en blanco del código
+	
 		    if (tempLine.equals("System.out.println") || tempLine.equals("System.out.print")) {
-			//System.out.println("Translating print statement");
+
 			jtrans.JstringTrans(prevLine, outfile);
 		    } else {
-			//System.out.println("Translated a not print statement");
+
 			jtrans.JTranslate(prevLine, outfile);
 		    }
 
 
-		    //System.out.println("Line read: " + prevLine);                       // lets us see what lines are being read and printed
-		    //line = br.readLine();
+		} while (line != null); // siempre que haya código para leer, se ejecutará la instrucción do anterior.
 
-		} while (line != null);                                                 // as long as there is code to read, the do statement above will run.
-		//System.out.println("File for translating: " + infile);                  // states the name of file translating
-		//System.out.println("Last line: " + line);                               // prints the last line of the code
-
-	    } else {                                                                  // not present yet.
-		System.out.println("Translating cpp -> java");
+	    } else {   // no presente todavía.
+		System.out.println("Traduciendo cpp -> java");
 		ctrans.addJavaHeader(infilename, outfile);
 
-		line = br.readLine();                                                   // starts the program to start reading lines of code and declares it in line
+		line = br.readLine();  // inicia el programa para comenzar a leer líneas de código y lo declara en línea
 		/*
-		  Until the code reaches the start of the main method, this will read the code
-		*/
+		  Hasta que el código llegue al inicio del método principal, este leerá el código		*/
 		do {
 		    line = br.readLine();
 		    line = line.replaceAll("\\s","");
@@ -163,10 +134,12 @@ or if it is cpp and adds at end accordingly
 
 
 		do {
-		    prevLine = line;                                                    // sets preLine equal to line before line reads the next line of code
-		    line = br.readLine();                                               // reads the next line of code
+		    prevLine = line;// establece preLine igual a la línea antes de que la línea lea la siguiente línea de código
+		    line = br.readLine(); // lee la siguiente línea de código
 		    System.out.println(line);
-		    if (prevLine.equals("}") && line == null) {                         // if prevLine ends with a } and the last line in null, break out of this operation
+                    
+                   // si prevLine termina con } y la última línea es nula, sal de esta operación
+		    if (prevLine.equals("}") && line == null) { 
 			break;
 		    }
 
@@ -175,14 +148,14 @@ or if it is cpp and adds at end accordingly
 		    tempLine = tempLine.replaceAll("\\s","");
 
 		    if (tempLine.equals("cout")) {
-			//System.out.println("Translating print statement");
+
 			ctrans.CstringTrans(prevLine, outfile);
 		    } else {
-			//System.out.println("Translated a not print statement");
+			
 			ctrans.CTranslate(prevLine, outfile);
 		    }//if-else
 
-		} while (line != null);                                                 // as long as there is code to read, the do statement above will run.
+		} while (line != null);// siempre que haya código para leer, se ejecutará la instrucción do anterior.
 	    }//if-else
 
 	    ctrans.CTranslate("}",outfile);
@@ -191,10 +164,12 @@ or if it is cpp and adds at end accordingly
 	      catches exception of a file inputed by user is not found.
 	    */
 	} catch (Exception FileNotFoundException) {
-	    System.out.println("This file doesn't exist, Lame-O!");
+	    System.out.println("Este archivo no existe !");
 	    return;
 	}
 
     }//main
 
-}//finalProject
+}
+
+//finalProject

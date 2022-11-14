@@ -37,7 +37,7 @@ public class CTranslator {
 
 	    writer.close();
 	} catch (Exception IOException) {
-	    System.out.println("Some sort of IO error here");
+	    System.out.println("Error");
 	}
 	    
     }//addJavaHeader
@@ -68,7 +68,7 @@ public class CTranslator {
 
 	    writer.close();
 	} catch (Exception IOException) {                                                        
-	    System.out.println("Some sort of IO error here");
+	    System.out.println("Error");
 	}
 	
     }//CTranslator
