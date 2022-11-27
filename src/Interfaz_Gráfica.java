@@ -87,7 +87,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
 
         //Entra un autocompletador  en el editor de código ctrl + espacio
         Functions.setAutocompleterJTextComponent(new String[]{"using namespace std;", "int main(){}",
-            "for(int i = 0; i<10;i++){  }", "#Include <iostream>", "#Include <conio.h>", "#Include <stdio.h>"}, txtCode, () -> {
+            "for(int i = 0; i<10;i++){  }", "#Include <iostream>", "#Include <conio.h>",
+            "#Include <stdio.h>", " for (int i = 0; i < 10; i++) { }", "while(true){}",
+            "do{ } while (true);", "cout<<;", "cin>>;"}, txtCode, () -> {
             timerKeyReleased.restart();
         });
     }
@@ -171,14 +173,16 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jtaOutputConsole);
 
         txtjava.setEditable(false);
-        txtjava.setBackground(new java.awt.Color(153, 153, 153));
+        txtjava.setBackground(new java.awt.Color(0, 0, 51));
         txtjava.setColumns(20);
         txtjava.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtjava.setForeground(new java.awt.Color(255, 255, 102));
+        txtjava.setForeground(new java.awt.Color(255, 153, 0));
         txtjava.setRows(5);
         jScrollPane5.setViewportView(txtjava);
 
         txtCode.setBackground(new java.awt.Color(204, 255, 255));
+        txtCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCode.setForeground(new java.awt.Color(0, 0, 204));
         jScrollPane1.setViewportView(txtCode);
 
         btnNuevo2.setBackground(new java.awt.Color(255, 204, 102));
@@ -353,8 +357,8 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         } catch (Exception e) {
 
             e.printStackTrace();
-
         }
+        ruta_j = "";
     }//GEN-LAST:event_BtnTraducirActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
@@ -552,48 +556,48 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         gramatica.group("VALOR", "(NUMERO|CADENA|NUM_DEC)", true);
         gramatica.group("CLASE_PRINCIPAL", "TIPO_DATO CLASS_PRINC PARENTESIS_A PARENTESIS_C LLAVE_A", true);
         gramatica.group("NAMESPACE", "PAL_RES_USING ESP_NOM PAL_RES_STD PUNTO_COMA", true);
-        gramatica.group("FUNCIONES", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C", true);
+        gramatica.group("FUNCIONES", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C", true);
 
         /*Declaración de variables numeros enteros*/
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true, identProd);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL VARIABLE OPE_ASIG VALOR PUNTO_COMA", true, 1,
-                "Error sintáctico {}, falta el tipo de dato de la variable[#/%]");
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true, identProd);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL LETRA OPE_ASIG VALOR PUNTO_COMA", true, 1,
+                "Error sintáctico {}, falta el tipo de dato de la LETRA[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
         gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO OPE_ASIG VALOR PUNTO_COMA", true, 2,
-                "Error sintáctico {}, falta definir variable[#/%]");
+                "Error sintáctico {}, falta definir LETRA[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE VALOR PUNTO_COMA", true, 3,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA VALOR PUNTO_COMA", true, 3,
                 "Error sintáctico {}, falta operador de asignacion[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG PUNTO_COMA", true, 4,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG PUNTO_COMA", true, 4,
                 "Error sintáctico {}, fvalor de asignacion incorrecto [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
         gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO PUNTO_COMA", true, 5,
-                "Error sintáctico {}, no se ha definido ninguna variable[#/%]");
+                "Error sintáctico {}, no se ha definido ninguna LETRA[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL VARIABLE PUNTO_COMA", true, 6,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL LETRA PUNTO_COMA", true, 6,
                 "Error sintáctico {}, [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
         gramatica.group("VARIABLES", "CLASE_PRINCIPAL OPE_ASIG PUNTO_COMA", true, 7,
                 "Error sintáctico {}, [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
         gramatica.group("VARIABLES", "CLASE_PRINCIPAL VALOR PUNTO_COMA", true, 8,
                 "Error sintáctico {}, [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true, 9,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true, 9,
                 "Error sintáctico no se ha definido clase principal {}, [#/%]");
         gramatica.initialLineColumn();
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO VARIABLE OPE_ASIG VALOR", true, 10,
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR", true, 10,
                 "Error semántico, falta punto y coma {}, [#/%]");
         gramatica.initialLineColumn();
 
@@ -608,36 +612,36 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         gramatica.initialLineColumn();
 
         /*Agrupación de funciones*/
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, identProd);
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C", true, 13,
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true, identProd);
+        gramatica.group("FUNCION", "TIPO_DATO LETRA TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C", true, 13,
                 "Error sintáctico, falta  parentesis de apertura[#/%]");
 
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE LLAVE_A LLAVE_C", true, 14,
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true);
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA LLAVE_A LLAVE_C", true, 14,
                 "Error sintáctico, falta  parentesis de cierre[#/%]");
 
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_C", true, 15,
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true);
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_C", true, 15,
                 "Error sintáctico, falta  llave de apertura de cierre[#/%]");
 
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A", true, 16,
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true);
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A", true, 16,
                 "Error sintáctico, falta  llave de cierre de cierre[#/%]");
 
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", " VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, 17,
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true);
+        gramatica.group("FUNCION", " LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true, 17,
                 "Error sintáctico, falta  tipo de dato de la función[#/%]");
 
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", " TIPO_DATO VARIABLE PARENTESIS_A  VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, 18,
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true);
+        gramatica.group("FUNCION", " TIPO_DATO LETRA PARENTESIS_A  LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true, 18,
                 "Error sintáctico, falta  tipo de dato de párametro[#/%]");
 
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", " TIPO_DATO PARENTESIS_A  TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true, 19,
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true);
+        gramatica.group("FUNCION", " TIPO_DATO PARENTESIS_A  TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true, 19,
                 "Error sintáctico, falta definir la función[#/%]");
 
-        gramatica.group("FUNCION", "TIPO_DATO VARIABLE PARENTESIS_A TIPO_DATO VARIABLE PARENTESIS_C LLAVE_A LLAVE_C ", true);
-        gramatica.group("FUNCION", " TIPO_DATO VARIABLE PARENTESIS_A  TIPO_DATO PARENTESIS_C LLAVE_A LLAVE_C ", true, 20,
+        gramatica.group("FUNCION", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C ", true);
+        gramatica.group("FUNCION", " TIPO_DATO LETRA PARENTESIS_A  TIPO_DATO PARENTESIS_C LLAVE_A LLAVE_C ", true, 20,
                 "Error sintáctico, falta definir parametro[#/%]");
 
         gramatica.show();

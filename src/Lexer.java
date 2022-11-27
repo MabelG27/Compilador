@@ -900,7 +900,7 @@ class Lexer {
             // fall through
           case 61: break;
           case 17:
-            { return token(yytext(), "VARIABLE", yyline, yycolumn);
+            { return token(yytext(), "LETRA", yyline, yycolumn);
             }
             // fall through
           case 62: break;

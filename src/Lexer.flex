@@ -158,7 +158,7 @@ string|String { return token(yytext(), "TIPO_DATO", yyline, yycolumn); }
 "<math.h>" { return token(yytext(), "LIBRERIA_C", yyline, yycolumn); }  
 
 
-{Letra}  { return token(yytext(), "VARIABLE", yyline, yycolumn); } 
+{Letra}  { return token(yytext(), "LETRA", yyline, yycolumn); } 
 
 /*ERRORES*/
 {Numero}|{Letra} { return token(yytext(), "Error1", yyline, yycolumn); } 

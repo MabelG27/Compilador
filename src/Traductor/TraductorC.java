@@ -7,8 +7,7 @@ public class TraductorC {
     public TraductorC() {
 
     }//CTranslator constructor
-    
-    
+
     public static String ruta_c = "";
     public static String ruta_j = "";
 
@@ -71,14 +70,11 @@ public class TraductorC {
             } else {
                 writer.println(");");
             }//if-else
-            
-             
-             
+
             writer.close();
         } catch (Exception IOException) {
             System.out.println("Error");
         }
-
     }//CTranslator
 
 }
