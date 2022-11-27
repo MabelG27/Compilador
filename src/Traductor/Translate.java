@@ -2,17 +2,18 @@ package Traductor;
 
 import java.util.*;
 import java.io.*;
-import java.text.*;
-import java.lang.Object;
-import java.nio.file.*;
+
 
 public class Translate {
-
+public static String mabel = "";
     public static void main(String[] args) {
 	Scanner scan = new Scanner(System.in);  // ddeclarando Scanner
 	System.out.print("Ingresar programa a traducir: ");
 	String infile = scan.next();  // toma lo ingrsado por el usuario y lo guarda en la variable infile
-
+        
+        mabel = infile;
+        
+        
 	String[] name = infile.split("\\.");  // divide el archivo en dos partes en el"."
 
 	String infilename = name[0];   // la primera parte de la división del archivo

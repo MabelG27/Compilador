@@ -7,7 +7,9 @@ public class TraductorJ {
     public TraductorJ() {
 
     }
-
+   public static String ruta_c = "";
+    public static String ruta_j = "";
+    
     public void JTranslate(String line, File outfile) {
 
 	try {

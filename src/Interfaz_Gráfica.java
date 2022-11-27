@@ -1,4 +1,8 @@
 
+import Traductor.TraductorC;
+import static Traductor.TraductorC.ruta_j;
+import Traductor.TraductorJ;
+import static Traductor.TraductorJ.ruta_c;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,12 +12,7 @@ import javax.swing.Timer;
  *
  * @author Mabel
  */
-import java.util.*;
-import java.io.*;
-import java.text.*;
 import java.lang.Object;
-import java.nio.file.*;
-import static jflex.option.Options.directory;
 import compilerTools.Directory;
 import compilerTools.ErrorLSSL;
 import compilerTools.Functions;
@@ -30,9 +29,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -96,78 +96,37 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnNuevo = new javax.swing.JButton();
-        btnAbrir = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
-        btnGuardarC = new javax.swing.JButton();
-        btnCompilar = new javax.swing.JButton();
+        BtnTraducir = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblTokens = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtaOutputConsole = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtCode = new javax.swing.JTextPane();
-        BtnLimpiar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        BtnTraducir = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        txtJava = new javax.swing.JTextPane();
         BtnSalir = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtaOutputConsole = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtjava = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtCode = new javax.swing.JTextPane();
+        btnNuevo2 = new javax.swing.JButton();
+        BtnLimpiar = new javax.swing.JButton();
+        btnAbrir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnGuardar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnGuardarC = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        btnCompilar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
 
-        btnNuevo.setBackground(new java.awt.Color(255, 204, 102));
-        btnNuevo.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(0, 102, 102));
-        btnNuevo.setText("Nuevo");
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+        BtnTraducir.setBackground(new java.awt.Color(255, 204, 102));
+        BtnTraducir.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        BtnTraducir.setForeground(new java.awt.Color(0, 102, 102));
+        BtnTraducir.setText("Traducir a  Java");
+        BtnTraducir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-
-        btnAbrir.setBackground(new java.awt.Color(255, 204, 102));
-        btnAbrir.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
-        btnAbrir.setForeground(new java.awt.Color(0, 102, 102));
-        btnAbrir.setText("Abrir");
-        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirActionPerformed(evt);
-            }
-        });
-
-        btnGuardar.setBackground(new java.awt.Color(255, 204, 102));
-        btnGuardar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(0, 102, 102));
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-
-        btnGuardarC.setBackground(new java.awt.Color(255, 204, 102));
-        btnGuardarC.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
-        btnGuardarC.setForeground(new java.awt.Color(0, 102, 102));
-        btnGuardarC.setText("Guardar como");
-        btnGuardarC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarCActionPerformed(evt);
-            }
-        });
-
-        btnCompilar.setBackground(new java.awt.Color(255, 204, 102));
-        btnCompilar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
-        btnCompilar.setForeground(new java.awt.Color(0, 102, 102));
-        btnCompilar.setText("Analizadores");
-        btnCompilar.setActionCommand("Analizador");
-        btnCompilar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompilarActionPerformed(evt);
+                BtnTraducirActionPerformed(evt);
             }
         });
 
@@ -190,49 +149,6 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         tblTokens.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tblTokens);
 
-        jtaOutputConsole.setEditable(false);
-        jtaOutputConsole.setBackground(new java.awt.Color(153, 153, 153));
-        jtaOutputConsole.setColumns(20);
-        jtaOutputConsole.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jtaOutputConsole.setForeground(new java.awt.Color(153, 0, 0));
-        jtaOutputConsole.setRows(5);
-        jScrollPane2.setViewportView(jtaOutputConsole);
-
-        txtCode.setBackground(new java.awt.Color(204, 255, 255));
-        jScrollPane1.setViewportView(txtCode);
-
-        BtnLimpiar.setBackground(new java.awt.Color(255, 204, 102));
-        BtnLimpiar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
-        BtnLimpiar.setForeground(new java.awt.Color(0, 102, 102));
-        BtnLimpiar.setText("Limpiar");
-        BtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnLimpiarActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Tabla de Símbolos");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Código Traducido");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Errores Detectados");
-
-        BtnTraducir.setBackground(new java.awt.Color(255, 204, 102));
-        BtnTraducir.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
-        BtnTraducir.setForeground(new java.awt.Color(0, 102, 102));
-        BtnTraducir.setText("Traducir a  Java");
-        BtnTraducir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTraducirActionPerformed(evt);
-            }
-        });
-
-        txtJava.setEditable(false);
-        jScrollPane4.setViewportView(txtJava);
-
         BtnSalir.setBackground(new java.awt.Color(255, 204, 102));
         BtnSalir.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
         BtnSalir.setForeground(new java.awt.Color(0, 102, 102));
@@ -246,6 +162,95 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Código Fuente");
 
+        jtaOutputConsole.setEditable(false);
+        jtaOutputConsole.setBackground(new java.awt.Color(153, 153, 153));
+        jtaOutputConsole.setColumns(20);
+        jtaOutputConsole.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jtaOutputConsole.setForeground(new java.awt.Color(153, 0, 0));
+        jtaOutputConsole.setRows(5);
+        jScrollPane2.setViewportView(jtaOutputConsole);
+
+        txtjava.setEditable(false);
+        txtjava.setBackground(new java.awt.Color(153, 153, 153));
+        txtjava.setColumns(20);
+        txtjava.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtjava.setForeground(new java.awt.Color(255, 255, 102));
+        txtjava.setRows(5);
+        jScrollPane5.setViewportView(txtjava);
+
+        txtCode.setBackground(new java.awt.Color(204, 255, 255));
+        jScrollPane1.setViewportView(txtCode);
+
+        btnNuevo2.setBackground(new java.awt.Color(255, 204, 102));
+        btnNuevo2.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnNuevo2.setForeground(new java.awt.Color(0, 102, 102));
+        btnNuevo2.setText("Nuevo");
+        btnNuevo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevo2ActionPerformed(evt);
+            }
+        });
+
+        BtnLimpiar.setBackground(new java.awt.Color(255, 204, 102));
+        BtnLimpiar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        BtnLimpiar.setForeground(new java.awt.Color(0, 102, 102));
+        BtnLimpiar.setText("Limpiar");
+        BtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnAbrir.setBackground(new java.awt.Color(255, 204, 102));
+        btnAbrir.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnAbrir.setForeground(new java.awt.Color(0, 102, 102));
+        btnAbrir.setText("Abrir");
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Tabla de Símbolos");
+
+        btnGuardar.setBackground(new java.awt.Color(255, 204, 102));
+        btnGuardar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(0, 102, 102));
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Código Traducido");
+
+        btnGuardarC.setBackground(new java.awt.Color(255, 204, 102));
+        btnGuardarC.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnGuardarC.setForeground(new java.awt.Color(0, 102, 102));
+        btnGuardarC.setText("Guardar como");
+        btnGuardarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarCActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("Errores Detectados");
+
+        btnCompilar.setBackground(new java.awt.Color(255, 204, 102));
+        btnCompilar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        btnCompilar.setForeground(new java.awt.Color(0, 102, 102));
+        btnCompilar.setText("Analizadores");
+        btnCompilar.setActionCommand("Analizador");
+        btnCompilar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompilarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,7 +259,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNuevo)
+                        .addComponent(btnNuevo2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAbrir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -276,15 +281,19 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1))
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4)
                             .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(0, 292, Short.MAX_VALUE)))))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane5)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -292,7 +301,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevo)
+                    .addComponent(btnNuevo2)
                     .addComponent(btnAbrir)
                     .addComponent(btnGuardar)
                     .addComponent(btnGuardarC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,9 +314,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -322,11 +331,54 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+    private void BtnTraducirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTraducirActionPerformed
+        Traducir_Codigo();
+
+        try {
+
+            FileReader lector = new FileReader(ruta_j);
+            BufferedReader bufer = new BufferedReader(lector);
+            String linea = "";
+            linea = bufer.readLine();
+
+            while ((linea = bufer.readLine()) != null) {
+
+                //System.out.println("linea " + linea);
+                txtjava.append(linea + "\n"); //aca el nombre del JTextField donde quieras mostrar el codigo
+
+            }
+            bufer.close();
+            lector.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+    }//GEN-LAST:event_BtnTraducirActionPerformed
+
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_BtnSalirActionPerformed
+
+    private void btnNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo2ActionPerformed
         directorio.New();
         LimpiarCampos();
         txtCode.setText("");
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    }//GEN-LAST:event_btnNuevo2ActionPerformed
+
+    private void BtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimpiarActionPerformed
+        Functions.clearDataInTable(tblTokens);
+        jtaOutputConsole.setText("");
+        tokens.clear();
+        errors.clear();
+        identProd.clear();
+        identificadores.clear();
+        CodigoCompilado = false;
+        txtCode.setText("");
+        txtjava.setText("");
+    }//GEN-LAST:event_BtnLimpiarActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
 
@@ -334,18 +386,114 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             colorAnalysis();
             LimpiarCampos();
         }
+        //Creamos el objeto JFileChooser
+        JFileChooser fc = new JFileChooser();
+
+        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+        int seleccion = fc.showOpenDialog(this);
+
+        //Si el usuario, pincha en aceptar
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+
+            //Seleccionamos el fichero
+            File fichero = fc.getSelectedFile();
+
+            //Ecribe la ruta del fichero seleccionado en el campo de texto
+            ruta_c = fichero.getAbsolutePath();
+            System.out.println("RUTA C++: " + ruta_c);
+
+            try ( FileReader fr = new FileReader(fichero)) {
+                String cadena = "";
+                int valor = fr.read();
+                while (valor != -1) {
+                    cadena = cadena + (char) valor;
+                    valor = fr.read();
+                }
+                txtCode.setText(cadena);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+        }
+
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (directorio.Save()) {
+        //        if (directorio.Save()) {
+        //            LimpiarCampos();
+        //        }
+
+        //Creamos el objeto JFileChooser
+        JFileChooser fc = new JFileChooser();
+
+        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+        int seleccion = fc.showSaveDialog(this);
+
+        if (directorio.Save() && seleccion != 0) {
             LimpiarCampos();
         }
+
+        //Si el usuario, pincha en aceptar
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+
+            //Seleccionamos el fichero
+            File fichero = fc.getSelectedFile();
+
+            //Ecribe la ruta del fichero seleccionado en el campo de texto
+            ruta_c = fichero.getAbsolutePath();
+            System.out.println("RUTA C++ " + ruta_c);
+
+            //            try ( FileReader fr = new FileReader(fichero)) {
+            //                String cadena = "";
+            //                int valor = fr.read();
+            //                while (valor != -1) {
+            //                    cadena = cadena + (char) valor;
+            //                    valor = fr.read();
+            //                }
+            //                txtCode.setText(cadena);
+            //            } catch (IOException e1) {
+            //                e1.printStackTrace();
+            //            }
+            LimpiarCampos();
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnGuardarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCActionPerformed
-        if (directorio.SaveAs()) {
+
+        //Creamos el objeto JFileChooser
+        JFileChooser fc = new JFileChooser();
+
+        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+        int seleccion = fc.showSaveDialog(this);
+
+        if (directorio.SaveAs() && seleccion != 0) {
             LimpiarCampos();
         }
+        //Si el usuario, pincha en aceptar
+        if (seleccion == JFileChooser.APPROVE_OPTION || directorio.SaveAs()) {
+
+            //Seleccionamos el fichero
+            File fichero = fc.getSelectedFile();
+
+            //Ecribe la ruta del fichero seleccionado en el campo de texto
+            ruta_c = fichero.getAbsolutePath();
+            System.out.println("RUTA C++: " + ruta_c);
+
+            //            try ( FileReader fr = new FileReader(fichero)) {
+            //                String cadena = "";
+            //                int valor = fr.read();
+            //                while (valor != -1) {
+            //                    cadena = cadena + (char) valor;
+            //                    valor = fr.read();
+            //                }
+            //                txtCode.setText(cadena);
+            //            } catch (IOException e1) {
+            //                e1.printStackTrace();
+            //            }
+            LimpiarCampos();
+        }
+
     }//GEN-LAST:event_btnGuardarCActionPerformed
 
     private void btnCompilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilarActionPerformed
@@ -357,27 +505,6 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             compile();
         }
     }//GEN-LAST:event_btnCompilarActionPerformed
-
-    private void BtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimpiarActionPerformed
-        Functions.clearDataInTable(tblTokens);
-        jtaOutputConsole.setText("");
-        tokens.clear();
-        errors.clear();
-        identProd.clear();
-        identificadores.clear();
-        CodigoCompilado = false;
-        txtCode.setText("");
-    }//GEN-LAST:event_BtnLimpiarActionPerformed
-
-    private void BtnTraducirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTraducirActionPerformed
-
-
-    }//GEN-LAST:event_BtnTraducirActionPerformed
-
-    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-        this.dispose();
-        System.exit(0);
-    }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void compile() {
         LimpiarCampos();//Limpia los campos
@@ -657,6 +784,170 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         CodigoCompilado = false;
     }
 
+    private void Traducir_Codigo() {
+        txtjava.setText("");
+        ruta_j = "";
+
+        String infile = ruta_c; //scan.next();  // toma lo ingrsado por el usuario y lo guarda en la variable infile
+
+        String[] name = infile.split("\\.");  // divide el archivo en dos partes en el"."
+
+        String infilename = name[0];   // la primera parte de la división del archivo
+        String infileext = name[1];   // la segunda  parte de la división del archivo
+
+        String outfilename;  // declarando variable  outfilename
+        /*
+Declaración if else que verifica si la segunda parte de la división 
+es java o si es cpp y agrega al final en consecuencia
+         */
+        if (infileext.equals("java")) {
+
+            outfilename = infilename + ".cpp";
+
+        } else if (infileext.equals("cpp")) {
+
+            outfilename = infilename + ".java";
+            ruta_j = outfilename;
+
+            System.out.println("RUTA Java: " + ruta_j);
+        } else {
+            System.out.println("No se puede traducir este lenguaje");
+            return;
+        }//if-else
+
+        //Crea un nuevo archivo llamado outfile al que se le da el nombre del archivo
+        File outfile = new File(outfilename);
+
+        /*
+Si hay un archivo que tiene el mismo nombre y no un directorio, esto
+elimine el archivo para permitir que se escriba uno nuevo sobre él.
+         */
+        if (outfile.exists() && !outfile.isDirectory()) {
+            outfile.delete();
+        }
+
+        /*
+  Declarando variables
+         */
+        String line = "";
+        String prevLine = "";
+        String tempLine = "";
+        String temp = "";
+
+        try {
+            FileInputStream fs = new FileInputStream(infile);  //Permite entrar en la entrada del archivo.
+            BufferedReader br = new BufferedReader(new InputStreamReader(fs)); //Nos pewrmite leer las lineas
+            TraductorJ jtrans = new TraductorJ(); // Declara que se usará un método en otra clase
+            TraductorC ctrans = new TraductorC();
+
+            if (infileext.equals("java")) {
+                //System.out.println("Adding header to .cpp file");                       // debugging code
+                jtrans.addCPPHeader(outfile);
+                //System.out.println("Header added to .cpp file");                        // debugging code
+
+                line = br.readLine(); // inicia el programa para comenzar a leer líneas de código y lo declara en línea
+                /*
+		  Hasta que el código llegue al inicio del método principal, este leerá el código
+                 */
+                do {
+                    line = br.readLine();
+                    line = line.replaceAll("\\s", "");
+                } while (!line.equals("publicstaticvoidmain(String[]args){"));
+
+                line = br.readLine();
+
+                do {
+                    prevLine = line; // establece preLine igual a la línea antes de que la línea lea la siguiente línea de código
+                    line = br.readLine(); // lee la siguiente línea de código
+
+                    System.out.println(line);
+                    /**
+                     * ************
+                     */
+
+                    if (prevLine.equals("}")) {
+                        System.out.println("HELLO?");
+                    }
+                    if (line == null) {
+                        System.out.println("ARCHIVO CREADO");
+
+                    }
+
+                    // if prevLine termina con un } y la última línea en nulo, salga de esta operación
+                    if (prevLine.equals("}") && line == null) {
+                        prevLine = "";
+                        break;
+                    }
+
+                    //Entrando en la sección que causa problemas
+                    String[] tempStArr = prevLine.split("\\(");// divide la prevLine
+
+                    tempLine = tempStArr[0];  // primera parte almacenada como tempLine
+
+                    tempLine = tempLine.replaceAll("\\s", ""); // código para eliminar espacios en blanco del código
+
+                    if (tempLine.equals("System.out.println") || tempLine.equals("System.out.print")) {
+
+                        jtrans.JstringTrans(prevLine, outfile);
+                    } else {
+
+                        jtrans.JTranslate(prevLine, outfile);
+                    }
+
+                } while (line != null); // siempre que haya código para leer, se ejecutará la instrucción do anterior.
+
+            } else {   // no presente todavía.
+                System.out.println("Traduciendo cpp -> java");
+                ctrans.addJavaHeader(infilename, outfile);
+
+                line = br.readLine();  // inicia el programa para comenzar a leer líneas de código y lo declara en línea
+                /*
+		  Hasta que el código llegue al inicio del método principal, este leerá el código		*/
+                do {
+                    line = br.readLine();
+                    line = line.replaceAll("\\s", "");
+                } while (!line.equals("intmain(){"));
+
+                line = br.readLine();
+
+                do {
+                    prevLine = line;// establece preLine igual a la línea antes de que la línea lea la siguiente línea de código
+                    line = br.readLine(); // lee la siguiente línea de código
+                    System.out.println(line);
+
+                    // si prevLine termina con } y la última línea es nula, sal de esta operación
+                    if (prevLine.equals("}") && line == null) {
+                        break;
+                    }
+
+                    String[] tempStArr = prevLine.split("\\<<");
+                    tempLine = tempStArr[0];
+                    tempLine = tempLine.replaceAll("\\s", "");
+
+                    if (tempLine.equals("cout")) {
+
+                        ctrans.CstringTrans(prevLine, outfile);
+                    } else {
+
+                        ctrans.CTranslate(prevLine, outfile);
+                    }//if-else
+
+                } while (line != null);// siempre que haya código para leer, se ejecutará la instrucción do anterior.
+            }//if-else
+
+            ctrans.CTranslate("}", outfile);
+            ctrans.CTranslate("}", outfile);
+            /*
+	      catches exception of a file inputed by user is not found.
+             */
+        } catch (Exception FileNotFoundException) {
+            System.out.println("RUTA C++: " + ruta_c);
+            System.out.println("Este archivo no existe !");
+            return;
+        }
+
+    }
+
     public static void main(String args[]) {
 
         try {
@@ -691,7 +982,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
 
     }
 
-    public String infile = "";
+    public static String mabel = "";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnLimpiar;
     private javax.swing.JButton BtnSalir;
@@ -701,6 +992,8 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarC;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnNuevo1;
+    private javax.swing.JButton btnNuevo2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -708,10 +1001,10 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea jtaOutputConsole;
     private javax.swing.JTable tblTokens;
     private javax.swing.JTextPane txtCode;
-    private javax.swing.JTextPane txtJava;
+    private javax.swing.JTextArea txtjava;
     // End of variables declaration//GEN-END:variables
 }
