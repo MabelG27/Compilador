@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+    </Container>
+    <Container class="javax.swing.JInternalFrame" name="jInternalFrame1">
+      <Properties>
+        <Property name="visible" type="boolean" value="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Container class="javax.swing.JInternalFrame" name="jInternalFrame2">
+      <Properties>
+        <Property name="visible" type="boolean" value="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -39,11 +81,7 @@
               <Component id="btnCompilar" min="-2" pref="109" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="BtnTraducir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="153" max="32767" attributes="0"/>
-              <Component id="BtnLimpiar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnSalir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="299" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -55,14 +93,28 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane3" alignment="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="jScrollPane5" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="BtnEjecutar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="BtnLimpiar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="BtnSalir" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane5" alignment="1" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -70,14 +122,15 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnNuevo2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAbrir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" max="-2" attributes="0">
                   <Component id="btnGuardarC" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="btnCompilar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="BtnTraducir" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="BtnEjecutar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="btnGuardar" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="btnAbrir" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="btnCompilar" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="btnNuevo2" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="BtnLimpiar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="BtnSalir" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
@@ -86,7 +139,7 @@
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jScrollPane5" pref="150" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -369,6 +422,24 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompilarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnEjecutar">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="cc" red="ff" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Banner" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="0" type="rgb"/>
+        </Property>
+        <Property name="actionCommand" type="java.lang.String" value="Ejecutar C&#xf3;digo"/>
+        <Property name="label" type="java.lang.String" value="Ejecutar C&#xf3;digo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnEjecutarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

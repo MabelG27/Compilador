@@ -31,7 +31,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -87,9 +91,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
 
         //Entra un autocompletador  en el editor de código ctrl + espacio
         Functions.setAutocompleterJTextComponent(new String[]{"using namespace std;", "int main(){}",
-            "for(int i = 0; i<10;i++){  }", "#Include <iostream>", "#Include <conio.h>",
-            "#Include <stdio.h>", " for (int i = 0; i < 10; i++) { }", "while(true){}",
-            "do{ } while (true);", "cout<<;", "cin>>;"}, txtCode, () -> {
+            "for (int i = 0; i<10;i++){  }", "#Include <iostream>", "#Include <conio.h>",
+            "#Include <stdio.h>", " for (int i = 0; i < 10; i++) { }", "while (true){}",
+            "do { } while (true);", "cout<<;", "cin>>;"}, txtCode, () -> {
             timerKeyReleased.restart();
         });
     }
@@ -98,6 +102,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jInternalFrame2 = new javax.swing.JInternalFrame();
         BtnTraducir = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblTokens = new javax.swing.JTable();
@@ -118,6 +125,33 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         btnGuardarC = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnCompilar = new javax.swing.JButton();
+        BtnEjecutar = new javax.swing.JButton();
+
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jInternalFrame2.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
+        jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
+        jInternalFrame2Layout.setHorizontalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame2Layout.setVerticalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
@@ -255,6 +289,17 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             }
         });
 
+        BtnEjecutar.setBackground(new java.awt.Color(255, 204, 102));
+        BtnEjecutar.setFont(new java.awt.Font("Sitka Banner", 1, 14)); // NOI18N
+        BtnEjecutar.setForeground(new java.awt.Color(0, 102, 102));
+        BtnEjecutar.setActionCommand("Ejecutar Código");
+        BtnEjecutar.setLabel("Ejecutar Código");
+        BtnEjecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEjecutarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -272,11 +317,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                 .addComponent(btnCompilar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnTraducir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
-                .addComponent(BtnLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnSalir)
-                .addContainerGap())
+                .addContainerGap(299, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
@@ -286,24 +327,36 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BtnEjecutar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnLimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnSalir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevo2)
-                    .addComponent(btnAbrir)
-                    .addComponent(btnGuardar)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(btnGuardarC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCompilar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnTraducir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCompilar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,7 +404,6 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
 
             e.printStackTrace();
         }
-        ruta_j = "";
     }//GEN-LAST:event_BtnTraducirActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
@@ -502,6 +554,50 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             compile();
         }
     }//GEN-LAST:event_btnCompilarActionPerformed
+
+    private void BtnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEjecutarActionPerformed
+
+        File fichero = new File(ruta_j);
+        String fileNameWithoutExtension = fichero.getName().substring(0, fichero.getName().lastIndexOf('.'));
+        System.out.println("-------------------------------------------------------------");
+        System.out.println("Nombre del Programa: " + fileNameWithoutExtension);
+        System.out.println("Ubicación: " + fichero.getParent());
+
+
+        try {
+            Path currentRelativePath = Paths.get("");
+            String ss = currentRelativePath.toAbsolutePath().toString();
+            System.out.println("Ruta desde donde se ejecuta: " + ss);
+            File ruta = new File(fichero.getParent());
+            System.out.println("-------------------------------------------------------------");
+
+            ProcessBuilder builder = new ProcessBuilder("javac", fichero.getName());
+            // System.out.println("builder " + fichero.getParent()+">" + " javac " + fichero.getName());
+            builder.redirectErrorStream(true);
+            builder.inheritIO();
+            builder.directory(ruta);
+            Process process = builder.start();
+  
+            int errCode = process.waitFor();
+            //System.out.println("Error al compilar? " + (errCode == 0 ? "No" : "Sí"));
+            System.out.println("-------------------------------------------------------------");
+            System.out.println("Impresión del código: ");
+
+            ProcessBuilder builder1 = new ProcessBuilder("java ", fileNameWithoutExtension);
+            builder1.redirectErrorStream(true);
+            builder1.inheritIO();
+            builder1.directory(ruta);
+            Process process1 = builder1.start();
+            int errCode1 = process1.waitFor();
+            //System.out.println("Error al ejecutar? " + (errCode1 == 0 ? "No" : "Sí"));
+
+        } catch (IOException e) {
+            System.err.println("Error de lectoescritura");
+        } catch (InterruptedException ex) {
+            System.err.println("Problema con los hilos");
+        }
+        System.out.println("\n-------------------------------------------------------------");
+    }//GEN-LAST:event_BtnEjecutarActionPerformed
 
     private void compile() {
         LimpiarCampos();//Limpia los campos
@@ -981,6 +1077,7 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
 
     public static String mabel = "";
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnEjecutar;
     private javax.swing.JButton BtnLimpiar;
     private javax.swing.JButton BtnSalir;
     private javax.swing.JButton BtnTraducir;
@@ -988,9 +1085,9 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
     private javax.swing.JButton btnCompilar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarC;
-    private javax.swing.JButton btnNuevo;
-    private javax.swing.JButton btnNuevo1;
     private javax.swing.JButton btnNuevo2;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -998,6 +1095,7 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea jtaOutputConsole;
     private javax.swing.JTable tblTokens;
