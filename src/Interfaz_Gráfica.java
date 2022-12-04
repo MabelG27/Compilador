@@ -37,6 +37,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -91,9 +92,9 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
 
         //Entra un autocompletador  en el editor de código ctrl + espacio
         Functions.setAutocompleterJTextComponent(new String[]{"using namespace std;", "int main(){}",
-            "for (int i = 0; i<10;i++){  }", "#Include <iostream>", "#Include <conio.h>",
-            "#Include <stdio.h>", " for (int i = 0; i < 10; i++) { }", "while (true){}",
-            "do { } while (true);", "cout<<;", "cin>>;"}, txtCode, () -> {
+            "for(int i = 0; i<10;i++){  }", "#Include <iostream>", "#Include <conio.h>",
+            "#Include<stdio.h>", "while(true){}",
+            "do{ }while(true);", "cout<<;", "cin>>;"}, txtCode, () -> {
             timerKeyReleased.restart();
         });
     }
@@ -217,6 +218,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         txtCode.setBackground(new java.awt.Color(204, 255, 255));
         txtCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtCode.setForeground(new java.awt.Color(0, 0, 204));
+        txtCode.setCaretColor(new java.awt.Color(51, 51, 255));
         jScrollPane1.setViewportView(txtCode);
 
         btnNuevo2.setBackground(new java.awt.Color(255, 204, 102));
@@ -315,9 +317,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                 .addComponent(btnGuardarC, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCompilar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnTraducir)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
@@ -329,36 +329,36 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BtnEjecutar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnLimpiar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnSalir))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel1)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 52, Short.MAX_VALUE)
+                        .addComponent(BtnTraducir)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnEjecutar)
+                        .addGap(21, 21, 21)
+                        .addComponent(BtnLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnSalir))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(btnGuardarC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnTraducir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAbrir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCompilar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnGuardarC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnTraducir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -447,7 +447,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             //Seleccionamos el fichero
             File fichero = fc.getSelectedFile();
 
-            //Ecribe la ruta del fichero seleccionado en el campo de texto
+            //Escribe la ruta del fichero seleccionado en el campo de texto
             ruta_c = fichero.getAbsolutePath();
             System.out.println("RUTA C++: " + ruta_c);
 
@@ -563,7 +563,6 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         System.out.println("Nombre del Programa: " + fileNameWithoutExtension);
         System.out.println("Ubicación: " + fichero.getParent());
 
-
         try {
             Path currentRelativePath = Paths.get("");
             String ss = currentRelativePath.toAbsolutePath().toString();
@@ -577,7 +576,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             builder.inheritIO();
             builder.directory(ruta);
             Process process = builder.start();
-  
+
             int errCode = process.waitFor();
             //System.out.println("Error al compilar? " + (errCode == 0 ? "No" : "Sí"));
             System.out.println("-------------------------------------------------------------");
@@ -875,6 +874,8 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         identProd.clear();
         identificadores.clear();
         CodigoCompilado = false;
+        txtjava.setText("");
+        txtCode.setText("");
     }
 
     private void Traducir_Codigo() {
@@ -893,18 +894,21 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
 Declaración if else que verifica si la segunda parte de la división 
 es java o si es cpp y agrega al final en consecuencia
          */
-        if (infileext.equals("java")) {
-
-            outfilename = infilename + ".cpp";
-
-        } else if (infileext.equals("cpp")) {
+//        if (infileext.equals("java")) {
+//
+//            outfilename = infilename + ".cpp";
+//
+//        } else 
+//            
+        if (infileext.equals("cpp")) {
 
             outfilename = infilename + ".java";
             ruta_j = outfilename;
 
             System.out.println("RUTA Java: " + ruta_j);
         } else {
-            System.out.println("No se puede traducir este lenguaje");
+            JOptionPane.showMessageDialog(null, "No se puede traducir este lenguaje");
+            // System.out.println("No se puede traducir este lenguaje");
             return;
         }//if-else
 
@@ -925,7 +929,7 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
         String line = "";
         String prevLine = "";
         String tempLine = "";
-        String temp = "";
+        //String temp = "";
 
         try {
             FileInputStream fs = new FileInputStream(infile);  //Permite entrar en la entrada del archivo.
@@ -990,7 +994,8 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
                 } while (line != null); // siempre que haya código para leer, se ejecutará la instrucción do anterior.
 
             } else {   // no presente todavía.
-                System.out.println("Traduciendo cpp -> java");
+                System.out.println("Traduciendo cpp -> java \n");
+
                 ctrans.addJavaHeader(infilename, outfile);
 
                 line = br.readLine();  // inicia el programa para comenzar a leer líneas de código y lo declara en línea
@@ -1004,11 +1009,11 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
                 line = br.readLine();
 
                 do {
-                    prevLine = line;// establece preLine igual a la línea antes de que la línea lea la siguiente línea de código
+                    prevLine = line;// lee la línea anterior de código
                     line = br.readLine(); // lee la siguiente línea de código
-                    System.out.println(line);
+                    //System.out.println("Linea: " + line);
 
-                    // si prevLine termina con } y la última línea es nula, sal de esta operación
+                    //si prevLine termina con } y la última línea es nula, sale de esta operación
                     if (prevLine.equals("}") && line == null) {
                         break;
                     }
@@ -1025,17 +1030,59 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
                         ctrans.CTranslate(prevLine, outfile);
                     }//if-else
 
-                } while (line != null);// siempre que haya código para leer, se ejecutará la instrucción do anterior.
+                    /*####################Detectar si es una función ####################*/
+                    int c = 0; //contador
+                    int cant_tip_dat = 0; //cuenta la cantidad de tipos d datos
+                    int cant_par = 0; //cuenta cantidad de parentesis
+                    int n = 0;
+
+                    for (int i = 3; i <= line.length(); i++) {//for para leer la linea
+     
+
+                        if (line.substring(c, i).equals("int")
+                                || line.substring(c, i).equals("Sti")
+                                || line.substring(c, i).equals("dou")
+                                || line.substring(c, i).equals("lon")) {
+
+                            cant_tip_dat += 1;
+                        }
+                        //System.out.println("INT: " + line.substring(c, i+3));
+
+                        //si hay un parentesis en una linea se le suma 1 a la variable cant_par
+                        if (line.substring(c, c + 1).equals("(")) {
+
+                            cant_par += 1;
+                        }
+
+                        c += 1;
+
+                        //Si hay mas de un parentesis y mas de un tipo de dato, entonces es una funcion
+                        if (cant_par == 1 && cant_tip_dat >= 2) {
+                            //System.out.println("Se detectó una función \n ");
+                            line = "public static " + line;
+                            // System.out.println("Reemplazo " + line + "\n");
+                            break;
+                        }
+
+                    }//for
+                    /*###########################################################################*/
+
+                } while (line != null);//Siempre que haya código para leer, se ejecutará la instrucción do anterior.
+
+                ctrans.CTranslate("}", outfile);
+
             }//if-else
 
             ctrans.CTranslate("}", outfile);
-            ctrans.CTranslate("}", outfile);
+
             /*
-	      catches exception of a file inputed by user is not found.
+	      catches exception si el archivo que ingresa el usuario no se encuentra
              */
+
+
         } catch (Exception FileNotFoundException) {
-            System.out.println("RUTA C++: " + ruta_c);
-            System.out.println("Este archivo no existe !");
+
+            //System.out.println("Este archivo no existe !");
             return;
         }
 
@@ -1049,17 +1096,25 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
 
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
