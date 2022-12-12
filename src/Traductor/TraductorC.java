@@ -10,6 +10,7 @@ public class TraductorC {
 
     public static String ruta_c = "";
     public static String ruta_j = "";
+    public static boolean dat_ent = false;
 
     public void CTranslate(String line, File outfile) {
 
@@ -37,6 +38,10 @@ public class TraductorC {
             /*
 	      Agregar encabezados java 
              */
+            /*#############Libreria Scanner##############*/
+       
+            writer.println("import java.util.Scanner;");
+            writer.println("\n");
             writer.println("public class " + fileNameWithoutExtension + " {");
             writer.println("    public static void main(String[] args) {");
             writer.println();
@@ -62,8 +67,7 @@ public class TraductorC {
             } else {
                 writer.print("System.out.print(");
             }//if         
-            
-            
+
             for (int i = 1; i < lastentry - 1; i++) {
                 writer.print(printStatement[i] + " + ");
             }//for

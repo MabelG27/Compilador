@@ -1,9 +1,11 @@
 
 import Traductor.TraductorC;
 import static Traductor.TraductorC.ruta_j;
+import java.util.ArrayList;
 import Traductor.TraductorJ;
 import static Traductor.TraductorJ.ruta_c;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.sun.org.apache.xpath.internal.operations.Variable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.Timer;
@@ -929,6 +931,10 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
         String line = "";
         String prevLine = "";
         String tempLine = "";
+        String variable = "";
+        int det_scn = 0;
+        //String vecto[] = new String[cant_vec];
+        ArrayList<String> vector = new ArrayList<>();
         //String temp = "";
 
         try {
@@ -1032,63 +1038,107 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
 
                     /*####################Detectar si es una función ####################*/
                     int c = 0; //contador
-                    int cant_tip_dat = 0; //cuenta la cantidad de tipos d datos
+                    int cant_pal = 0; //cuenta la cantidad de tipos d datos
                     int cant_par = 0; //cuenta cantidad de parentesis
-                    int n = 0;
+                    String scanEnt = tempLine;
 
                     for (int i = 3; i <= line.length(); i++) {//for para leer la linea
-     
 
                         if (line.substring(c, i).equals("int")
-                                || line.substring(c, i).equals("Sti")
+                                || line.substring(c, i).equals("Str")
                                 || line.substring(c, i).equals("dou")
-                                || line.substring(c, i).equals("lon")) {
+                                || line.substring(c, i).equals("lon")
+                                || line.substring(c, i).equals("boo")
+                                || line.substring(c, i).equals("flo")) {
 
-                            cant_tip_dat += 1;
-                        }
-                        //System.out.println("INT: " + line.substring(c, i+3));
-
-                        //si hay un parentesis en una linea se le suma 1 a la variable cant_par
-                        if (line.substring(c, c + 1).equals("(")) {
-
-                            cant_par += 1;
+                            vector.add(line.replaceAll("\\s", ""));
+                            cant_pal += 1;
                         }
 
-                        c += 1;
+                        if (line.substring(c, i).equals("cin")) {
 
-                        //Si hay mas de un parentesis y mas de un tipo de dato, entonces es una funcion
-                        if (cant_par == 1 && cant_tip_dat >= 2) {
-                            //System.out.println("Se detectó una función \n ");
-                            line = "public static " + line;
-                            // System.out.println("Reemplazo " + line + "\n");
-                            break;
+                            //Detectando variables
+                            variable = line.substring(5);
+                            variable = variable.replace(";", "");
+                            System.out.println("Variable: " + variable);
+                            System.out.println("Linea: " + line);
+
+                            det_scn += 1;
+                            line = line.replace(";", " ");
+
+                            for (int j = 0; j < vector.size(); j++) {
+                                System.out.println("Vector: " + vector.get(j));
+
+                                if (vector.get(j).substring(0, 3).equals("dou")) {
+                                    line = line + " = sc.nextDouble();";
+                                    break;
+                                } else if (vector.get(j).substring(0, 3).equals("int")) {
+                                    line = line + " = sc.nextInt();";
+                                    break;
+                                } else if (vector.get(j).substring(0, 3).equals("Str")) {
+                                    line = line + " = sc.nextLine();";
+                                    break;
+                                } else if (vector.get(j).substring(0, 3).equals("lon")) {
+                                    line = line + " = sc.nextLong();";
+                                    break;
+                                }  else if (vector.get(j).substring(0, 3).equals("flo")) {
+                                    line = line + " = sc.nextFloat();";
+                                    break;
+                                }
                         }
+                        if (det_scn == 1) {
+                            line = line.replace("cin>>", "Scanner sc = new Scanner(System.in);");
+                        } else {
+                            line = line.replace("cin>>", " ");
+                        }
+                      
+                    }//Cierra if
 
-                    }//for
-                    /*###########################################################################*/
+                    //si hay un parentesis en una linea se le suma 1 a la variable cant_par
+                    if (line.substring(c, c + 1).equals("(")) {
 
-                } while (line != null);//Siempre que haya código para leer, se ejecutará la instrucción do anterior.
+                        cant_par += 1;
+                    }
 
-                ctrans.CTranslate("}", outfile);
+                    c += 1;
 
-            }//if-else
+                    //Si hay mas de un parentesis y mas de un tipo de dato, entonces es una funcion
+                    if (cant_par == 1 && cant_pal >= 2) {
+                        //System.out.println("Se detectó una función \n ");
+                        line = "public static " + line;
+                        // System.out.println("Reemplazo " + line + "\n");
+                        break;
+                    }
+
+                }//for
+                /*###########################################################################*/
+
+            }
+            while (line != null);//Siempre que haya código para leer, se ejecutará la instrucción do anterior.
 
             ctrans.CTranslate("}", outfile);
 
-            /*
+        }//if-else
+
+        ctrans.CTranslate("}", outfile);
+
+
+        /*
 	      catches exception si el archivo que ingresa el usuario no se encuentra
-             */
+         */
+    }
+    catch (Exception FileNotFoundException
 
-
-        } catch (Exception FileNotFoundException) {
+    
+        ) {
 
             //System.out.println("Este archivo no existe !");
             return;
-        }
-
     }
 
-    public static void main(String args[]) {
+}
+
+public static void main(String args[]) {
 
         try {
 
@@ -1097,24 +1147,28 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-                }
+}
             }
 
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class  
 
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class  
 
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
