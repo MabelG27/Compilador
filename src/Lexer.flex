@@ -145,7 +145,7 @@ char|
 string|String { return token(yytext(), "TIPO_DATO", yyline, yycolumn); }
 
 
-\"{Letra}+\"  { return token(yytext(), "CADENA", yyline, yycolumn); } 
+\"{Letra}+\" | \"{Letra}+\"\.  { return token(yytext(), "CADENA", yyline, yycolumn); } 
 {Numero} { return token(yytext(), "NUMERO", yyline, yycolumn); } 
 {Numero}\.{Numero}|{Numero}\,{Numero} { return token(yytext(), "NUM_DEC", yyline, yycolumn); } 
 
@@ -158,7 +158,7 @@ string|String { return token(yytext(), "TIPO_DATO", yyline, yycolumn); }
 "<math.h>" { return token(yytext(), "LIBRERIA_C", yyline, yycolumn); }  
 
 
-{Letra}  { return token(yytext(), "LETRA", yyline, yycolumn); } 
+{Letra}+  { return token(yytext(), "VARIABLE", yyline, yycolumn); } 
 
 /*ERRORES*/
 {Numero}|{Letra} { return token(yytext(), "Error1", yyline, yycolumn); } 

@@ -337,7 +337,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 52, Short.MAX_VALUE)
+                        .addGap(0, 73, Short.MAX_VALUE)
                         .addComponent(BtnTraducir)
                         .addGap(18, 18, 18)
                         .addComponent(BtnEjecutar)
@@ -481,7 +481,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         int seleccion = fc.showSaveDialog(this);
 
         if (directorio.Save() && seleccion != 0) {
-            LimpiarCampos();
+
         }
 
         //Si el usuario, pincha en aceptar
@@ -494,17 +494,6 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             ruta_c = fichero.getAbsolutePath();
             System.out.println("RUTA C++ " + ruta_c);
 
-            //            try ( FileReader fr = new FileReader(fichero)) {
-            //                String cadena = "";
-            //                int valor = fr.read();
-            //                while (valor != -1) {
-            //                    cadena = cadena + (char) valor;
-            //                    valor = fr.read();
-            //                }
-            //                txtCode.setText(cadena);
-            //            } catch (IOException e1) {
-            //                e1.printStackTrace();
-            //            }
             LimpiarCampos();
         }
 
@@ -519,7 +508,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         int seleccion = fc.showSaveDialog(this);
 
         if (directorio.SaveAs() && seleccion != 0) {
-            LimpiarCampos();
+
         }
         //Si el usuario, pincha en aceptar
         if (seleccion == JFileChooser.APPROVE_OPTION || directorio.SaveAs()) {
@@ -531,17 +520,6 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
             ruta_c = fichero.getAbsolutePath();
             System.out.println("RUTA C++: " + ruta_c);
 
-            //            try ( FileReader fr = new FileReader(fichero)) {
-            //                String cadena = "";
-            //                int valor = fr.read();
-            //                while (valor != -1) {
-            //                    cadena = cadena + (char) valor;
-            //                    valor = fr.read();
-            //                }
-            //                txtCode.setText(cadena);
-            //            } catch (IOException e1) {
-            //                e1.printStackTrace();
-            //            }
             LimpiarCampos();
         }
 
@@ -601,7 +579,6 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnEjecutarActionPerformed
 
     private void compile() {
-        LimpiarCampos();//Limpia los campos
         Analisis_Lexico();//Ejecuta el análisis léxico
         LlenarTablaTokens();//Llena la tabla de tokens
         Analisis_Sintactico();//Ejecuta análisis sintáctico
@@ -647,47 +624,47 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         gramatica.group("CLASE_PRINCIPAL", "TIPO_DATO CLASS_PRINC PARENTESIS_A PARENTESIS_C LLAVE_A", true);
         gramatica.group("NAMESPACE", "PAL_RES_USING ESP_NOM PAL_RES_STD PUNTO_COMA", true);
         gramatica.group("FUNCIONES", "TIPO_DATO LETRA PARENTESIS_A TIPO_DATO LETRA PARENTESIS_C LLAVE_A LLAVE_C", true);
+        gramatica.group("VARIABLE", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("LIBRERIAS", "PAL_RES_INCL LIBRERIA_C", true);
+        gramatica.group("GRAMMAR", "LIBRERIAS NAMESPACE CLASE_PRINCIPAL VARIABLE", true);
 
         /*Declaración de variables numeros enteros*/
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true, identProd);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL LETRA OPE_ASIG VALOR PUNTO_COMA", true, 1,
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true, identProd);
+        gramatica.group("VARIABLES", "LETRA OPE_ASIG VALOR PUNTO_COMA", true, 1,
                 "Error sintáctico {}, falta el tipo de dato de la LETRA[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO OPE_ASIG VALOR PUNTO_COMA", true, 2,
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "TIPO_DATO OPE_ASIG VALOR PUNTO_COMA", true, 2,
                 "Error sintáctico {}, falta definir LETRA[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA VALOR PUNTO_COMA", true, 3,
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA VALOR PUNTO_COMA", true, 3,
                 "Error sintáctico {}, falta operador de asignacion[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG PUNTO_COMA", true, 4,
-                "Error sintáctico {}, fvalor de asignacion incorrecto [#/%]");
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG PUNTO_COMA", true, 4,
+                "Error sintáctico {}, valor de asignacion incorrecto [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO PUNTO_COMA", true, 5,
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "TIPO_DATO PUNTO_COMA", true, 5,
                 "Error sintáctico {}, no se ha definido ninguna LETRA[#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL LETRA PUNTO_COMA", true, 6,
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "AL LETRA PUNTO_COMA", true, 6,
                 "Error sintáctico {}, [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL OPE_ASIG PUNTO_COMA", true, 7,
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "OPE_ASIG PUNTO_COMA", true, 7,
                 "Error sintáctico {}, [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL VALOR PUNTO_COMA", true, 8,
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "VALOR PUNTO_COMA", true, 8,
                 "Error sintáctico {}, [#/%]");
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true, 9,
-                "Error sintáctico no se ha definido clase principal {}, [#/%]");
         gramatica.initialLineColumn();
 
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
-        gramatica.group("VARIABLES", "CLASE_PRINCIPAL TIPO_DATO LETRA OPE_ASIG VALOR", true, 10,
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR PUNTO_COMA", true);
+        gramatica.group("VARIABLES", "TIPO_DATO LETRA OPE_ASIG VALOR", true, 10,
                 "Error semántico, falta punto y coma {}, [#/%]");
         gramatica.initialLineColumn();
 
@@ -754,8 +731,8 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
     private void Analisis_Semantico() {
 
         for (Production id : identProd) {
-            System.out.println(id.lexemeRank(0, -1));
-            System.out.println(id.lexicalCompRank(0, -1));
+            System.out.println(id.lexemeRank(0, identProd.size() - 2));
+            System.out.println(id.lexicalCompRank(0, identProd.size() - 2));
         }
         HashMap<String, String> idenDataType = new HashMap<>();
         /*Enteros*/
@@ -892,16 +869,7 @@ public class Interfaz_Gráfica extends javax.swing.JFrame {
         String infileext = name[1];   // la segunda  parte de la división del archivo
 
         String outfilename;  // declarando variable  outfilename
-        /*
-Declaración if else que verifica si la segunda parte de la división 
-es java o si es cpp y agrega al final en consecuencia
-         */
-//        if (infileext.equals("java")) {
-//
-//            outfilename = infilename + ".cpp";
-//
-//        } else 
-//            
+
         if (infileext.equals("cpp")) {
 
             outfilename = infilename + ".java";
@@ -1021,6 +989,7 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
 
                     //si prevLine termina con } y la última línea es nula, sale de esta operación
                     if (prevLine.equals("}") && line == null) {
+
                         break;
                     }
 
@@ -1040,19 +1009,21 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
                     int c = 0; //contador
                     int cant_pal = 0; //cuenta la cantidad de tipos d datos
                     int cant_par = 0; //cuenta cantidad de parentesis
-                    String scanEnt = tempLine;
 
                     for (int i = 3; i <= line.length(); i++) {//for para leer la linea
 
                         if (line.substring(c, i).equals("int")
-                                || line.substring(c, i).equals("Str")
+                                || line.substring(c, i).equals("str")
                                 || line.substring(c, i).equals("dou")
                                 || line.substring(c, i).equals("lon")
                                 || line.substring(c, i).equals("boo")
                                 || line.substring(c, i).equals("flo")) {
 
+                            line = line.replace("string", "String");
                             vector.add(line.replaceAll("\\s", ""));
                             cant_pal += 1;
+                            var += 1;
+                            System.out.println("var: " + var);
                         }
 
                         if (line.substring(c, i).equals("cin")) {
@@ -1081,64 +1052,61 @@ elimine el archivo para permitir que se escriba uno nuevo sobre él.
                                 } else if (vector.get(j).substring(0, 3).equals("lon")) {
                                     line = line + " = sc.nextLong();";
                                     break;
-                                }  else if (vector.get(j).substring(0, 3).equals("flo")) {
+                                } else if (vector.get(j).substring(0, 3).equals("flo")) {
                                     line = line + " = sc.nextFloat();";
                                     break;
+                                } else {
+                                    if (vector.get(j).substring(0, 3).equals("")) {
+                                        line = line + " String a";
+                                        vector.add(line.replaceAll("\\s", ""));
+                                    }
                                 }
+                            }
+                            if (det_scn == 1) {
+                                line = line.replace("cin>>", "Scanner sc = new Scanner(System.in);");
+                            } else {
+                                line = line.replace("cin>>", " ");
+                            }
+
+                        }//Cierra if
+
+                        //si hay un parentesis en una linea se le suma 1 a la variable cant_par
+                        if (line.substring(c, c + 1).equals("(")) {
+
+                            cant_par += 1;
                         }
-                        if (det_scn == 1) {
-                            line = line.replace("cin>>", "Scanner sc = new Scanner(System.in);");
-                        } else {
-                            line = line.replace("cin>>", " ");
+
+                        c += 1;
+
+                        //Si hay mas de un parentesis y mas de un tipo de dato, entonces es una funcion
+                        if (cant_par == 1 && cant_pal >= 2) {
+                            //System.out.println("Se detectó una función \n ");
+                            line = "public static " + line;
+                            // System.out.println("Reemplazo " + line + "\n");
+                            break;
                         }
-                      
-                    }//Cierra if
 
-                    //si hay un parentesis en una linea se le suma 1 a la variable cant_par
-                    if (line.substring(c, c + 1).equals("(")) {
+                    }//for
+                    /*###########################################################################*/  
 
-                        cant_par += 1;
-                    }
+                } while (line != null);//Siempre que haya código para leer, se ejecutará la instrucción do anterior.
 
-                    c += 1;
+            }//if-else
+           
+            ctrans.CTranslate("}}", outfile);
+       
 
-                    //Si hay mas de un parentesis y mas de un tipo de dato, entonces es una funcion
-                    if (cant_par == 1 && cant_pal >= 2) {
-                        //System.out.println("Se detectó una función \n ");
-                        line = "public static " + line;
-                        // System.out.println("Reemplazo " + line + "\n");
-                        break;
-                    }
-
-                }//for
-                /*###########################################################################*/
-
-            }
-            while (line != null);//Siempre que haya código para leer, se ejecutará la instrucción do anterior.
-
-            ctrans.CTranslate("}", outfile);
-
-        }//if-else
-
-        ctrans.CTranslate("}", outfile);
-
-
-        /*
-	      catches exception si el archivo que ingresa el usuario no se encuentra
-         */
-    }
-    catch (Exception FileNotFoundException
-
-    
-        ) {
+            /* catches exception si el archivo que ingresa el usuario no se encuentra
+             */
+        } catch (Exception FileNotFoundException) {
 
             //System.out.println("Este archivo no existe !");
             return;
+        }
+
     }
 
-}
-
-public static void main(String args[]) {
+    public static void main(String args[]) {
 
         try {
 
@@ -1147,28 +1115,24 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
 
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class  
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Interfaz_Gráfica.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1183,8 +1147,8 @@ public static void main(String args[]) {
         });
 
     }
-
-    public static String mabel = "";
+ 
+    public static int var = 0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEjecutar;
     private javax.swing.JButton BtnLimpiar;
